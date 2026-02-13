@@ -1,0 +1,262 @@
+openapi: 3.0.3
+info:
+  title: CompyBeacon OCI Registry
+  description: |
+    An OCI-compliant registry and enrichment service for Gemara compliance content.
+  version: 0.1.0
+
+paths:
+  /v2/:
+    get:
+      summary: OCI API Version Check
+      description: The 'handshake' endpoint to confirm OCI compliance.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Docker-Distribution-API-Version:
+              schema:
+                type: string
+                example: "registry/2.0"
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+
+  /v2/_catalog:
+    get:
+      summary: List all repositories
+      responses:
+        '200':
+          description: A list of all policy, catalog, and guidance IDs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  repositories:
+                    type: array
+                    items:
+                      type: string
+                example:
+                  repositories: ["policies/rhel11", "catalogs/pci-dss", "guidance/nist"]
+
+  /v2/{name}/tags/list:
+    get:
+      summary: List all tags for a specific repository
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The full repository path (e.g., policies/rhel11-stig).
+      responses:
+        '200':
+          description: A list of version tags.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                example:
+                  name: "policies/rhel11-stig"
+                  tags: ["v1.0.0", "v1.1.0", "latest"]
+
+  /v2/{name}/manifests/{reference}:
+    get:
+      summary: Get artifact manifest
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: reference
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Can be a tag (v1.0) or a digest (sha256:...).
+
+  /v1/enrich:
+    post:
+      summary: Enrich telemetry attributes with compliance control data
+      description: |
+        Accepts a set of key telemetry attributes (e.g., asset ID, policy name, user ID) and
+        returns additional compliance-related attributes based on internal domain logic.
+        This endpoint is intended to be called by an OpenTelemetry Collector's custom processor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrichmentRequest'
+      responses:
+        '200':
+          description: Successfully enriched attributes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrichmentResponse'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    EnrichmentRequest:
+      type: object
+      description: Request payload for telemetry attribute enrichment
+      properties:
+        policy:
+          $ref: '#/components/schemas/Policy'
+      required:
+        - policy
+
+    EnrichmentResponse:
+      type: object
+      description: Complete compliance metadata including control mappings, frameworks, risk assessment.
+      properties:
+        compliance:
+          $ref: '#/components/schemas/Compliance'
+      required:
+        - compliance
+      example:
+        compliance:
+          control:
+            id: "OSPS-QA-07.01"
+            category: "Access Control"
+            catalogId: "OSPS-B"
+            applicability: ["Production", "Staging"]
+            remediationDescription: "Remove root user access and implement proper IAM policies"
+          frameworks:
+            frameworks: ["NIST-800-53", "SOC-2"]
+            requirements: ["AC-1", "CC6.1"]
+          risk:
+            level: "High"
+          enrichmentStatus: "Success"
+
+    Policy:
+      type: object
+      description: Complete evidence log from policy engines and compliance assessment tools
+      properties:
+        policyEngineName:
+          type: string
+          description: Name of the policy engine that performed the evaluation or enforcement action
+          example: "OPA"
+        policyRuleId:
+          type: string
+          description: Unique identifier for the policy rule being evaluated or enforced
+          example: "deny-root-user"
+      required:
+        - policyEngineName
+        - policyRuleId
+
+    Compliance:
+      type: object
+      description: Compliance details from OCSF Security Control Profile.
+      properties:
+        control:
+          $ref: '#/components/schemas/ComplianceControl'
+        frameworks:
+          $ref: '#/components/schemas/ComplianceFrameworks'
+        risk:
+          $ref: '#/components/schemas/ComplianceRisk'
+        enrichmentStatus:
+          type: string
+          description: Status of the compliance enrichment process
+          enum: ["Success", "Unmapped", "Partial", "Unknown", "Skipped"]
+          example: "Success"
+      required:
+        - control
+        - frameworks
+        - enrichmentStatus
+
+    ComplianceControl:
+      type: object
+      description: Security control information for compliance assessment
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the security control being assessed
+          example: "OSPS-QA-07.01"
+        category:
+          type: string
+          description: Category or family that the security control belongs to
+          example: "Access Control"
+        catalogId:
+          type: string
+          description: Unique identifier for the security control catalog or framework
+          example: "OSPS-B"
+        applicability:
+          type: array
+          items:
+            type: string
+          description: Environments or contexts where this control applies
+          example: ["Production", "Staging"]
+        remediationDescription:
+          type: string
+          description: Description of the recommended remediation strategy for this control
+          example: "Remove root user access and implement proper IAM policies"
+      required:
+        - id
+        - catalogId
+        - category
+
+    ComplianceFrameworks:
+      type: object
+      description: Compliance framework and requirement information
+      properties:
+        frameworks:
+          type: array
+          items:
+            type: string
+          description: Regulatory or industry standards being evaluated for compliance
+          example: ["NIST-800-53", "SOC-2"]
+        requirements:
+          type: array
+          items:
+            type: string
+          description: Compliance requirement identifiers from the frameworks being evaluated
+          example: ["AC-1", "CC6.1"]
+      required:
+        - frameworks
+        - requirements
+
+    ComplianceRisk:
+      type: object
+      description: Compliance risk assessment information
+      properties:
+        level:
+          type: string
+          enum: ["Critical", "High", "Medium", "Low", "Informational"]
+          description: Risk level associated with non-compliance
+          example: "High"
+      required:
+        - level
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: HTTP status code
+          example: 400
+        message:
+          type: string
+          description: Error message
