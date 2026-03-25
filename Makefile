@@ -203,6 +203,91 @@ golangci-lint: ## Runs golangci-lint for all modules
 	@echo "--- All linting passed! ---"
 .PHONY: golangci-lint
 
+#------------------------------------------------------------------------------
+# CRAP Load Monitoring
+#------------------------------------------------------------------------------
+
+GAZE_VERSION ?= latest
+GAZE_COVERPROFILE := coverage.out
+GAZE_NEW_FUNC_THRESHOLD ?= 30
+
+ensure-gaze: ## Install gaze if not present
+	@command -v gaze >/dev/null 2>&1 || \
+		(echo "Installing gaze..." && go install github.com/unbound-force/gaze/cmd/gaze@$(GAZE_VERSION))
+.PHONY: ensure-gaze
+
+crapload: ensure-gaze test ## Run CRAP and GazeCRAP analysis (human-readable) for all modules
+	@for m in $(MODULES); do \
+		echo "========================================================================================================="; \
+		echo "CRAP analysis for $$m..."; \
+		echo "========================================================================================================="; \
+		(cd $$m && gaze crap --format=text --coverprofile=$(GAZE_COVERPROFILE) ./...); \
+	done
+.PHONY: crapload
+
+crapload-baseline: ensure-gaze test ## Generate baseline thresholds in .gaze/baseline.json for all modules
+	@for m in $(MODULES); do \
+		echo "Generating baseline for $$m..."; \
+		mkdir -p $$m/.gaze; \
+		MODULE_ROOT=$$(cd $$m && pwd); \
+		(cd $$m && gaze crap --format=json --coverprofile=$(GAZE_COVERPROFILE) ./... | \
+			jq --arg root "$$MODULE_ROOT/" '(.scores[],.summary.worst_crap[]?,.summary.worst_gaze_crap[]?) |= (.file |= ltrimstr($$root))' > .gaze/baseline.json); \
+		echo "Baseline written to $$m/.gaze/baseline.json"; \
+	done
+.PHONY: crapload-baseline
+
+crapload-check: ensure-gaze test ## Check for CRAP regressions against baseline for all modules
+	@TOTAL_REGRESSIONS=0; \
+	for m in $(MODULES); do \
+		echo "========================================================================================================="; \
+		echo "Checking CRAP regressions for $$m..."; \
+		echo "========================================================================================================="; \
+		BASELINE=$$m/.gaze/baseline.json; \
+		if [ ! -f $$BASELINE ]; then \
+			echo "ERROR: Baseline file $$BASELINE not found. Run 'make crapload-baseline' first."; \
+			exit 1; \
+		fi; \
+		MODULE_ROOT=$$(cd $$m && pwd); \
+		(cd $$m && gaze crap --format=json --coverprofile=$(GAZE_COVERPROFILE) ./... | \
+			jq --arg root "$$MODULE_ROOT/" '(.scores[],.summary.worst_crap[]?,.summary.worst_gaze_crap[]?) |= (.file |= ltrimstr($$root))' > /tmp/crapload-current.json); \
+		echo "Comparing against baseline..."; \
+		jq -r '.scores[] | "\(.file):\(.function) \(.crap) \(.gaze_crap // 0)"' $$BASELINE | sort > /tmp/crapload-baseline.txt; \
+		jq -r '.scores[] | "\(.file):\(.function) \(.crap) \(.gaze_crap // 0)"' /tmp/crapload-current.json | sort > /tmp/crapload-current.txt; \
+		REGRESSIONS=0; \
+		while IFS=' ' read -r func crap gaze_crap; do \
+			baseline_crap=$$(grep -F "$$func " /tmp/crapload-baseline.txt | head -1 | awk '{print $$2}'); \
+			baseline_gaze=$$(grep -F "$$func " /tmp/crapload-baseline.txt | head -1 | awk '{print $$3}'); \
+			if [ -z "$$baseline_crap" ]; then \
+				if [ "$$(echo "$$crap > $(GAZE_NEW_FUNC_THRESHOLD)" | bc -l)" = "1" ]; then \
+					echo "NEW FUNCTION VIOLATION: $$func CRAP=$$crap (threshold=$(GAZE_NEW_FUNC_THRESHOLD))"; \
+					REGRESSIONS=$$((REGRESSIONS + 1)); \
+				fi; \
+			else \
+				if [ "$$(echo "$$crap > $$baseline_crap" | bc -l)" = "1" ]; then \
+					echo "REGRESSION: $$func CRAP $$baseline_crap -> $$crap"; \
+					REGRESSIONS=$$((REGRESSIONS + 1)); \
+				fi; \
+				if [ "$$(echo "$$gaze_crap > $$baseline_gaze" | bc -l)" = "1" ]; then \
+					echo "REGRESSION: $$func GazeCRAP $$baseline_gaze -> $$gaze_crap"; \
+					REGRESSIONS=$$((REGRESSIONS + 1)); \
+				fi; \
+			fi; \
+		done < /tmp/crapload-current.txt; \
+		TOTAL_REGRESSIONS=$$((TOTAL_REGRESSIONS + REGRESSIONS)); \
+		if [ $$REGRESSIONS -gt 0 ]; then \
+			echo "$$m: $$REGRESSIONS regression(s) detected"; \
+		else \
+			echo "$$m: No regressions detected"; \
+		fi; \
+	done; \
+	if [ $$TOTAL_REGRESSIONS -gt 0 ]; then \
+		echo "FAIL: $$TOTAL_REGRESSIONS total regression(s) detected"; \
+		exit 1; \
+	else \
+		echo "PASS: No regressions detected across all modules"; \
+	fi
+.PHONY: crapload-check
+
 # ------------------------------------------------------------------------------
 # Help Target
 # Prints a friendly help message.
