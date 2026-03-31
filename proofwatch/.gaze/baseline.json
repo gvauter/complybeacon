@@ -25,7 +25,8 @@
       "line": 77,
       "complexity": 5,
       "line_coverage": 0,
-      "crap": 30
+      "crap": 30,
+      "fix_strategy": "add_tests"
     },
     {
       "package": "main",
@@ -34,7 +35,8 @@
       "line": 112,
       "complexity": 8,
       "line_coverage": 0,
-      "crap": 72
+      "crap": 72,
+      "fix_strategy": "add_tests"
     },
     {
       "package": "main",
@@ -43,7 +45,8 @@
       "line": 177,
       "complexity": 4,
       "line_coverage": 0,
-      "crap": 20
+      "crap": 20,
+      "fix_strategy": "add_tests"
     },
     {
       "package": "main",
@@ -52,7 +55,8 @@
       "line": 210,
       "complexity": 8,
       "line_coverage": 0,
-      "crap": 72
+      "crap": 72,
+      "fix_strategy": "add_tests"
     },
     {
       "package": "main",
@@ -70,7 +74,8 @@
       "line": 239,
       "complexity": 12,
       "line_coverage": 0,
-      "crap": 156
+      "crap": 156,
+      "fix_strategy": "add_tests"
     },
     {
       "package": "proofwatch",
@@ -157,7 +162,8 @@
       "crap": 1,
       "contract_coverage": 0,
       "gaze_crap": 2,
-      "quadrant": "Q1_Safe"
+      "quadrant": "Q1_Safe",
+      "contract_coverage_reason": "no_effects_detected"
     },
     {
       "package": "metrics",
@@ -169,7 +175,8 @@
       "crap": 1,
       "contract_coverage": 0,
       "gaze_crap": 2,
-      "quadrant": "Q1_Safe"
+      "quadrant": "Q1_Safe",
+      "contract_coverage_reason": "no_effects_detected"
     },
     {
       "package": "proofwatch",
@@ -232,7 +239,8 @@
       "line": 110,
       "complexity": 16,
       "line_coverage": 100,
-      "crap": 16
+      "crap": 16,
+      "fix_strategy": "decompose"
     },
     {
       "package": "proofwatch",
@@ -274,7 +282,8 @@
       "crap": 2,
       "contract_coverage": 0,
       "gaze_crap": 6,
-      "quadrant": "Q1_Safe"
+      "quadrant": "Q1_Safe",
+      "contract_coverage_reason": "no_effects_detected"
     },
     {
       "package": "proofwatch",
@@ -284,8 +293,8 @@
       "complexity": 2,
       "line_coverage": 100,
       "crap": 2,
-      "contract_coverage": 0,
-      "gaze_crap": 6,
+      "contract_coverage": 100,
+      "gaze_crap": 2,
       "quadrant": "Q1_Safe"
     },
     {
@@ -296,8 +305,8 @@
       "complexity": 1,
       "line_coverage": 100,
       "crap": 1,
-      "contract_coverage": 0,
-      "gaze_crap": 2,
+      "contract_coverage": 100,
+      "gaze_crap": 1,
       "quadrant": "Q1_Safe"
     }
   ],
@@ -310,10 +319,14 @@
     "crap_threshold": 15,
     "gaze_crapload": 0,
     "gaze_crap_threshold": 15,
-    "avg_gaze_crap": 6,
-    "avg_contract_coverage": 0,
+    "avg_gaze_crap": 5.5,
+    "avg_contract_coverage": 20,
     "quadrant_counts": {
       "Q1_Safe": 10
+    },
+    "fix_strategy_counts": {
+      "add_tests": 5,
+      "decompose": 1
     },
     "worst_crap": [
       {
@@ -323,7 +336,8 @@
         "line": 239,
         "complexity": 12,
         "line_coverage": 0,
-        "crap": 156
+        "crap": 156,
+        "fix_strategy": "add_tests"
       },
       {
         "package": "main",
@@ -332,7 +346,8 @@
         "line": 112,
         "complexity": 8,
         "line_coverage": 0,
-        "crap": 72
+        "crap": 72,
+        "fix_strategy": "add_tests"
       },
       {
         "package": "main",
@@ -341,7 +356,8 @@
         "line": 210,
         "complexity": 8,
         "line_coverage": 0,
-        "crap": 72
+        "crap": 72,
+        "fix_strategy": "add_tests"
       },
       {
         "package": "main",
@@ -350,7 +366,8 @@
         "line": 77,
         "complexity": 5,
         "line_coverage": 0,
-        "crap": 30
+        "crap": 30,
+        "fix_strategy": "add_tests"
       },
       {
         "package": "main",
@@ -359,7 +376,8 @@
         "line": 177,
         "complexity": 4,
         "line_coverage": 0,
-        "crap": 20
+        "crap": 20,
+        "fix_strategy": "add_tests"
       }
     ],
     "worst_gaze_crap": [
@@ -422,6 +440,62 @@
         "contract_coverage": 0,
         "gaze_crap": 6,
         "quadrant": "Q1_Safe"
+      }
+    ],
+    "recommended_actions": [
+      {
+        "function": "main",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 239,
+        "fix_strategy": "add_tests",
+        "crap": 156,
+        "complexity": 12
+      },
+      {
+        "function": "simulateTruthBeamEnrichment",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 112,
+        "fix_strategy": "add_tests",
+        "crap": 72,
+        "complexity": 8
+      },
+      {
+        "function": "valueToString",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 210,
+        "fix_strategy": "add_tests",
+        "crap": 72,
+        "complexity": 8
+      },
+      {
+        "function": "createLogFromAttributes",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 77,
+        "fix_strategy": "add_tests",
+        "crap": 30,
+        "complexity": 5
+      },
+      {
+        "function": "convertToWeaverFormat",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 177,
+        "fix_strategy": "add_tests",
+        "crap": 20,
+        "complexity": 4
+      },
+      {
+        "function": "mapEnforcementStatus",
+        "package": "proofwatch",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/ocsf.go",
+        "line": 110,
+        "fix_strategy": "decompose",
+        "crap": 16,
+        "complexity": 16
       }
     ]
   }

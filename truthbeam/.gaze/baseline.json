@@ -8,9 +8,9 @@
       "complexity": 5,
       "line_coverage": 100,
       "crap": 5,
-      "contract_coverage": 0,
-      "gaze_crap": 30,
-      "quadrant": "Q3_SimpleButUnderspecified"
+      "contract_coverage": 33.333333333333336,
+      "gaze_crap": 12.407407407407405,
+      "quadrant": "Q1_Safe"
     },
     {
       "package": "truthbeam",
@@ -20,8 +20,8 @@
       "complexity": 1,
       "line_coverage": 100,
       "crap": 1,
-      "contract_coverage": 0,
-      "gaze_crap": 2,
+      "contract_coverage": 100,
+      "gaze_crap": 1,
       "quadrant": "Q1_Safe"
     },
     {
@@ -50,8 +50,8 @@
       "complexity": 1,
       "line_coverage": 100,
       "crap": 1,
-      "contract_coverage": 0,
-      "gaze_crap": 2,
+      "contract_coverage": 100,
+      "gaze_crap": 1,
       "quadrant": "Q1_Safe"
     },
     {
@@ -62,9 +62,9 @@
       "complexity": 7,
       "line_coverage": 100,
       "crap": 7,
-      "contract_coverage": 0,
-      "gaze_crap": 56,
-      "quadrant": "Q3_SimpleButUnderspecified"
+      "contract_coverage": 100,
+      "gaze_crap": 7,
+      "quadrant": "Q1_Safe"
     },
     {
       "package": "applier",
@@ -74,9 +74,9 @@
       "complexity": 7,
       "line_coverage": 90.47619047619048,
       "crap": 7.042328042328042,
-      "contract_coverage": 0,
-      "gaze_crap": 56,
-      "quadrant": "Q3_SimpleButUnderspecified"
+      "contract_coverage": 100,
+      "gaze_crap": 7,
+      "quadrant": "Q1_Safe"
     },
     {
       "package": "applier",
@@ -113,9 +113,9 @@
       "complexity": 4,
       "line_coverage": 87.5,
       "crap": 4.03125,
-      "contract_coverage": 0,
-      "gaze_crap": 20,
-      "quadrant": "Q3_SimpleButUnderspecified"
+      "contract_coverage": 100,
+      "gaze_crap": 4,
+      "quadrant": "Q1_Safe"
     },
     {
       "package": "client",
@@ -125,8 +125,8 @@
       "complexity": 1,
       "line_coverage": 100,
       "crap": 1,
-      "contract_coverage": 0,
-      "gaze_crap": 2,
+      "contract_coverage": 100,
+      "gaze_crap": 1,
       "quadrant": "Q1_Safe"
     },
     {
@@ -146,9 +146,9 @@
       "complexity": 4,
       "line_coverage": 92.3076923076923,
       "crap": 4.007282658170232,
-      "contract_coverage": 0,
-      "gaze_crap": 20,
-      "quadrant": "Q3_SimpleButUnderspecified"
+      "contract_coverage": 100,
+      "gaze_crap": 4,
+      "quadrant": "Q1_Safe"
     },
     {
       "package": "client",
@@ -194,8 +194,8 @@
       "complexity": 1,
       "line_coverage": 100,
       "crap": 1,
-      "contract_coverage": 0,
-      "gaze_crap": 2,
+      "contract_coverage": 100,
+      "gaze_crap": 1,
       "quadrant": "Q1_Safe"
     },
     {
@@ -233,13 +233,12 @@
     "avg_crap": 3.246459038780443,
     "crapload": 0,
     "crap_threshold": 15,
-    "gaze_crapload": 5,
+    "gaze_crapload": 0,
     "gaze_crap_threshold": 15,
-    "avg_gaze_crap": 21.11111111111111,
-    "avg_contract_coverage": 0,
+    "avg_gaze_crap": 4.267489711934156,
+    "avg_contract_coverage": 92.5925925925926,
     "quadrant_counts": {
-      "Q1_Safe": 4,
-      "Q3_SimpleButUnderspecified": 5
+      "Q1_Safe": 9
     },
     "worst_crap": [
       {
@@ -250,9 +249,9 @@
         "complexity": 7,
         "line_coverage": 90.47619047619048,
         "crap": 7.042328042328042,
-        "contract_coverage": 0,
-        "gaze_crap": 56,
-        "quadrant": "Q3_SimpleButUnderspecified"
+        "contract_coverage": 100,
+        "gaze_crap": 7,
+        "quadrant": "Q1_Safe"
       },
       {
         "package": "truthbeam",
@@ -271,9 +270,9 @@
         "complexity": 7,
         "line_coverage": 100,
         "crap": 7,
-        "contract_coverage": 0,
-        "gaze_crap": 56,
-        "quadrant": "Q3_SimpleButUnderspecified"
+        "contract_coverage": 100,
+        "gaze_crap": 7,
+        "quadrant": "Q1_Safe"
       },
       {
         "package": "truthbeam",
@@ -296,6 +295,18 @@
     ],
     "worst_gaze_crap": [
       {
+        "package": "truthbeam",
+        "function": "(*Config).Validate",
+        "file": "config.go",
+        "line": 23,
+        "complexity": 5,
+        "line_coverage": 100,
+        "crap": 5,
+        "contract_coverage": 33.333333333333336,
+        "gaze_crap": 12.407407407407405,
+        "quadrant": "Q1_Safe"
+      },
+      {
         "package": "applier",
         "function": "(*Applier).Apply",
         "file": "internal/applier/applier.go",
@@ -303,9 +314,9 @@
         "complexity": 7,
         "line_coverage": 100,
         "crap": 7,
-        "contract_coverage": 0,
-        "gaze_crap": 56,
-        "quadrant": "Q3_SimpleButUnderspecified"
+        "contract_coverage": 100,
+        "gaze_crap": 7,
+        "quadrant": "Q1_Safe"
       },
       {
         "package": "applier",
@@ -315,21 +326,9 @@
         "complexity": 7,
         "line_coverage": 90.47619047619048,
         "crap": 7.042328042328042,
-        "contract_coverage": 0,
-        "gaze_crap": 56,
-        "quadrant": "Q3_SimpleButUnderspecified"
-      },
-      {
-        "package": "truthbeam",
-        "function": "(*Config).Validate",
-        "file": "config.go",
-        "line": 23,
-        "complexity": 5,
-        "line_coverage": 100,
-        "crap": 5,
-        "contract_coverage": 0,
-        "gaze_crap": 30,
-        "quadrant": "Q3_SimpleButUnderspecified"
+        "contract_coverage": 100,
+        "gaze_crap": 7,
+        "quadrant": "Q1_Safe"
       },
       {
         "package": "client",
@@ -339,9 +338,9 @@
         "complexity": 4,
         "line_coverage": 87.5,
         "crap": 4.03125,
-        "contract_coverage": 0,
-        "gaze_crap": 20,
-        "quadrant": "Q3_SimpleButUnderspecified"
+        "contract_coverage": 100,
+        "gaze_crap": 4,
+        "quadrant": "Q1_Safe"
       },
       {
         "package": "client",
@@ -351,9 +350,9 @@
         "complexity": 4,
         "line_coverage": 92.3076923076923,
         "crap": 4.007282658170232,
-        "contract_coverage": 0,
-        "gaze_crap": 20,
-        "quadrant": "Q3_SimpleButUnderspecified"
+        "contract_coverage": 100,
+        "gaze_crap": 4,
+        "quadrant": "Q1_Safe"
       }
     ]
   }
