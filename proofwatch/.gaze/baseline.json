@@ -1,0 +1,502 @@
+{
+  "scores": [
+    {
+      "package": "main",
+      "function": "generateGemaraLog",
+      "file": "cmd/validate-logs/main.go",
+      "line": 20,
+      "complexity": 1,
+      "line_coverage": 0,
+      "crap": 2
+    },
+    {
+      "package": "main",
+      "function": "generateOCSFLog",
+      "file": "cmd/validate-logs/main.go",
+      "line": 48,
+      "complexity": 1,
+      "line_coverage": 0,
+      "crap": 2
+    },
+    {
+      "package": "main",
+      "function": "createLogFromAttributes",
+      "file": "cmd/validate-logs/main.go",
+      "line": 77,
+      "complexity": 5,
+      "line_coverage": 0,
+      "crap": 30,
+      "fix_strategy": "add_tests"
+    },
+    {
+      "package": "main",
+      "function": "simulateTruthBeamEnrichment",
+      "file": "cmd/validate-logs/main.go",
+      "line": 112,
+      "complexity": 8,
+      "line_coverage": 0,
+      "crap": 72,
+      "fix_strategy": "add_tests"
+    },
+    {
+      "package": "main",
+      "function": "convertToWeaverFormat",
+      "file": "cmd/validate-logs/main.go",
+      "line": 177,
+      "complexity": 4,
+      "line_coverage": 0,
+      "crap": 20,
+      "fix_strategy": "add_tests"
+    },
+    {
+      "package": "main",
+      "function": "valueToString",
+      "file": "cmd/validate-logs/main.go",
+      "line": 210,
+      "complexity": 8,
+      "line_coverage": 0,
+      "crap": 72,
+      "fix_strategy": "add_tests"
+    },
+    {
+      "package": "main",
+      "function": "stringPtr",
+      "file": "cmd/validate-logs/main.go",
+      "line": 235,
+      "complexity": 1,
+      "line_coverage": 0,
+      "crap": 2
+    },
+    {
+      "package": "main",
+      "function": "main",
+      "file": "cmd/validate-logs/main.go",
+      "line": 239,
+      "complexity": 12,
+      "line_coverage": 0,
+      "crap": 156,
+      "fix_strategy": "add_tests"
+    },
+    {
+      "package": "proofwatch",
+      "function": "WithMeterProvider",
+      "file": "config.go",
+      "line": 19,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2,
+      "contract_coverage": 0,
+      "gaze_crap": 6,
+      "quadrant": "Q1_Safe"
+    },
+    {
+      "package": "proofwatch",
+      "function": "WithLoggerProvider",
+      "file": "config.go",
+      "line": 29,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2,
+      "contract_coverage": 0,
+      "gaze_crap": 6,
+      "quadrant": "Q1_Safe"
+    },
+    {
+      "package": "proofwatch",
+      "function": "WithTracerProvider",
+      "file": "config.go",
+      "line": 39,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2,
+      "contract_coverage": 0,
+      "gaze_crap": 6,
+      "quadrant": "Q1_Safe"
+    },
+    {
+      "package": "proofwatch",
+      "function": "(GemaraEvidence).ToJSON",
+      "file": "gemara.go",
+      "line": 21,
+      "complexity": 1,
+      "line_coverage": 0,
+      "crap": 2
+    },
+    {
+      "package": "proofwatch",
+      "function": "(GemaraEvidence).Attributes",
+      "file": "gemara.go",
+      "line": 25,
+      "complexity": 3,
+      "line_coverage": 100,
+      "crap": 3
+    },
+    {
+      "package": "proofwatch",
+      "function": "(GemaraEvidence).Timestamp",
+      "file": "gemara.go",
+      "line": 46,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2
+    },
+    {
+      "package": "metrics",
+      "function": "NewEvidenceObserver",
+      "file": "internal/metrics/observer.go",
+      "line": 19,
+      "complexity": 3,
+      "line_coverage": 77.77777777777777,
+      "crap": 3.0987654320987654,
+      "contract_coverage": 0,
+      "gaze_crap": 12,
+      "quadrant": "Q1_Safe"
+    },
+    {
+      "package": "metrics",
+      "function": "(*EvidenceObserver).Dropped",
+      "file": "internal/metrics/observer.go",
+      "line": 45,
+      "complexity": 1,
+      "line_coverage": 100,
+      "crap": 1,
+      "contract_coverage": 0,
+      "gaze_crap": 2,
+      "quadrant": "Q1_Safe",
+      "contract_coverage_reason": "no_effects_detected"
+    },
+    {
+      "package": "metrics",
+      "function": "(*EvidenceObserver).Processed",
+      "file": "internal/metrics/observer.go",
+      "line": 49,
+      "complexity": 1,
+      "line_coverage": 100,
+      "crap": 1,
+      "contract_coverage": 0,
+      "gaze_crap": 2,
+      "quadrant": "Q1_Safe",
+      "contract_coverage_reason": "no_effects_detected"
+    },
+    {
+      "package": "proofwatch",
+      "function": "(OCSFEvidence).Timestamp",
+      "file": "ocsf.go",
+      "line": 28,
+      "complexity": 1,
+      "line_coverage": 100,
+      "crap": 1
+    },
+    {
+      "package": "proofwatch",
+      "function": "(OCSFEvidence).ToJSON",
+      "file": "ocsf.go",
+      "line": 32,
+      "complexity": 1,
+      "line_coverage": 100,
+      "crap": 1
+    },
+    {
+      "package": "proofwatch",
+      "function": "(OCSFEvidence).Attributes",
+      "file": "ocsf.go",
+      "line": 36,
+      "complexity": 6,
+      "line_coverage": 87.5,
+      "crap": 6.0703125
+    },
+    {
+      "package": "proofwatch",
+      "function": "stringVal",
+      "file": "ocsf.go",
+      "line": 68,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2
+    },
+    {
+      "package": "proofwatch",
+      "function": "mapEvaluationStatus",
+      "file": "ocsf.go",
+      "line": 77,
+      "complexity": 4,
+      "line_coverage": 100,
+      "crap": 4
+    },
+    {
+      "package": "proofwatch",
+      "function": "mapEnforcementAction",
+      "file": "ocsf.go",
+      "line": 92,
+      "complexity": 5,
+      "line_coverage": 100,
+      "crap": 5
+    },
+    {
+      "package": "proofwatch",
+      "function": "mapEnforcementStatus",
+      "file": "ocsf.go",
+      "line": 110,
+      "complexity": 16,
+      "line_coverage": 100,
+      "crap": 16,
+      "fix_strategy": "decompose"
+    },
+    {
+      "package": "proofwatch",
+      "function": "validateEvidenceFields",
+      "file": "ocsf.go",
+      "line": 135,
+      "complexity": 7,
+      "line_coverage": 100,
+      "crap": 7
+    },
+    {
+      "package": "proofwatch",
+      "function": "NewProofWatch",
+      "file": "proofwatch.go",
+      "line": 30,
+      "complexity": 3,
+      "line_coverage": 87.5,
+      "crap": 3.017578125,
+      "contract_coverage": 0,
+      "gaze_crap": 12,
+      "quadrant": "Q1_Safe"
+    },
+    {
+      "package": "proofwatch",
+      "function": "(*ProofWatch).Log",
+      "file": "proofwatch.go",
+      "line": 55,
+      "complexity": 1,
+      "line_coverage": 100,
+      "crap": 1
+    },
+    {
+      "package": "proofwatch",
+      "function": "(*ProofWatch).LogWithSeverity",
+      "file": "proofwatch.go",
+      "line": 60,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2,
+      "contract_coverage": 0,
+      "gaze_crap": 6,
+      "quadrant": "Q1_Safe",
+      "contract_coverage_reason": "no_effects_detected"
+    },
+    {
+      "package": "proofwatch",
+      "function": "ToLogKeyValues",
+      "file": "proofwatch.go",
+      "line": 91,
+      "complexity": 2,
+      "line_coverage": 100,
+      "crap": 2,
+      "contract_coverage": 100,
+      "gaze_crap": 2,
+      "quadrant": "Q1_Safe"
+    },
+    {
+      "package": "proofwatch",
+      "function": "Version",
+      "file": "proofwatch.go",
+      "line": 100,
+      "complexity": 1,
+      "line_coverage": 100,
+      "crap": 1,
+      "contract_coverage": 100,
+      "gaze_crap": 1,
+      "quadrant": "Q1_Safe"
+    }
+  ],
+  "summary": {
+    "total_functions": 30,
+    "avg_complexity": 3.6,
+    "avg_line_coverage": 68.42592592592592,
+    "avg_crap": 14.172888535236627,
+    "crapload": 6,
+    "crap_threshold": 15,
+    "gaze_crapload": 0,
+    "gaze_crap_threshold": 15,
+    "avg_gaze_crap": 5.5,
+    "avg_contract_coverage": 20,
+    "quadrant_counts": {
+      "Q1_Safe": 10
+    },
+    "fix_strategy_counts": {
+      "add_tests": 5,
+      "decompose": 1
+    },
+    "worst_crap": [
+      {
+        "package": "main",
+        "function": "main",
+        "file": "cmd/validate-logs/main.go",
+        "line": 239,
+        "complexity": 12,
+        "line_coverage": 0,
+        "crap": 156,
+        "fix_strategy": "add_tests"
+      },
+      {
+        "package": "main",
+        "function": "simulateTruthBeamEnrichment",
+        "file": "cmd/validate-logs/main.go",
+        "line": 112,
+        "complexity": 8,
+        "line_coverage": 0,
+        "crap": 72,
+        "fix_strategy": "add_tests"
+      },
+      {
+        "package": "main",
+        "function": "valueToString",
+        "file": "cmd/validate-logs/main.go",
+        "line": 210,
+        "complexity": 8,
+        "line_coverage": 0,
+        "crap": 72,
+        "fix_strategy": "add_tests"
+      },
+      {
+        "package": "main",
+        "function": "createLogFromAttributes",
+        "file": "cmd/validate-logs/main.go",
+        "line": 77,
+        "complexity": 5,
+        "line_coverage": 0,
+        "crap": 30,
+        "fix_strategy": "add_tests"
+      },
+      {
+        "package": "main",
+        "function": "convertToWeaverFormat",
+        "file": "cmd/validate-logs/main.go",
+        "line": 177,
+        "complexity": 4,
+        "line_coverage": 0,
+        "crap": 20,
+        "fix_strategy": "add_tests"
+      }
+    ],
+    "worst_gaze_crap": [
+      {
+        "package": "metrics",
+        "function": "NewEvidenceObserver",
+        "file": "internal/metrics/observer.go",
+        "line": 19,
+        "complexity": 3,
+        "line_coverage": 77.77777777777777,
+        "crap": 3.0987654320987654,
+        "contract_coverage": 0,
+        "gaze_crap": 12,
+        "quadrant": "Q1_Safe"
+      },
+      {
+        "package": "proofwatch",
+        "function": "NewProofWatch",
+        "file": "proofwatch.go",
+        "line": 30,
+        "complexity": 3,
+        "line_coverage": 87.5,
+        "crap": 3.017578125,
+        "contract_coverage": 0,
+        "gaze_crap": 12,
+        "quadrant": "Q1_Safe"
+      },
+      {
+        "package": "proofwatch",
+        "function": "WithMeterProvider",
+        "file": "config.go",
+        "line": 19,
+        "complexity": 2,
+        "line_coverage": 100,
+        "crap": 2,
+        "contract_coverage": 0,
+        "gaze_crap": 6,
+        "quadrant": "Q1_Safe"
+      },
+      {
+        "package": "proofwatch",
+        "function": "WithLoggerProvider",
+        "file": "config.go",
+        "line": 29,
+        "complexity": 2,
+        "line_coverage": 100,
+        "crap": 2,
+        "contract_coverage": 0,
+        "gaze_crap": 6,
+        "quadrant": "Q1_Safe"
+      },
+      {
+        "package": "proofwatch",
+        "function": "WithTracerProvider",
+        "file": "config.go",
+        "line": 39,
+        "complexity": 2,
+        "line_coverage": 100,
+        "crap": 2,
+        "contract_coverage": 0,
+        "gaze_crap": 6,
+        "quadrant": "Q1_Safe"
+      }
+    ],
+    "recommended_actions": [
+      {
+        "function": "main",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 239,
+        "fix_strategy": "add_tests",
+        "crap": 156,
+        "complexity": 12
+      },
+      {
+        "function": "simulateTruthBeamEnrichment",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 112,
+        "fix_strategy": "add_tests",
+        "crap": 72,
+        "complexity": 8
+      },
+      {
+        "function": "valueToString",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 210,
+        "fix_strategy": "add_tests",
+        "crap": 72,
+        "complexity": 8
+      },
+      {
+        "function": "createLogFromAttributes",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 77,
+        "fix_strategy": "add_tests",
+        "crap": 30,
+        "complexity": 5
+      },
+      {
+        "function": "convertToWeaverFormat",
+        "package": "main",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/cmd/validate-logs/main.go",
+        "line": 177,
+        "fix_strategy": "add_tests",
+        "crap": 20,
+        "complexity": 4
+      },
+      {
+        "function": "mapEnforcementStatus",
+        "package": "proofwatch",
+        "file": "/home/maburgha/GIT/ProdSec/complytime-collector-components/proofwatch/ocsf.go",
+        "line": 110,
+        "fix_strategy": "decompose",
+        "crap": 16,
+        "complexity": 16
+      }
+    ]
+  }
+}
