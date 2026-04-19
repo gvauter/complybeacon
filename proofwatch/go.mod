@@ -1,6 +1,8 @@
 module github.com/complytime/complybeacon/proofwatch
 
-go 1.25.0
+go 1.25.8
+
+toolchain go1.25.9
 
 require (
 	github.com/Santiago-Labs/go-ocsf v0.1.1-0.20250729170529-8b19b43949a6
