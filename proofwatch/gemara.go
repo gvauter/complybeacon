@@ -12,7 +12,7 @@ var _ Evidence = (*GemaraEvidence)(nil)
 
 // GemaraEvidence represents evidence data from the Gemara compliance assessment framework.
 type GemaraEvidence struct {
-	gemara.Metadata
+	Metadata gemara.Metadata `json:"metadata" yaml:"metadata"`
 	gemara.AssessmentLog
 }
 
@@ -22,11 +22,11 @@ func (g GemaraEvidence) ToJSON() ([]byte, error) {
 
 func (g GemaraEvidence) Attributes() []attribute.KeyValue {
 	attrs := []attribute.KeyValue{
-		attribute.String(POLICY_ENGINE_NAME, g.Author.Name),
+		attribute.String(POLICY_ENGINE_NAME, g.Metadata.Author.Name),
 		attribute.String(COMPLIANCE_CONTROL_ID, g.Requirement.EntryId),
 		attribute.String(COMPLIANCE_CONTROL_CATALOG_ID, g.Requirement.ReferenceId),
 		attribute.String(POLICY_EVALUATION_RESULT, g.Result.String()),
-		attribute.String(COMPLIANCE_ASSESSMENT_ID, g.Id),
+		attribute.String(COMPLIANCE_ASSESSMENT_ID, g.Metadata.Id),
 	}
 
 	if g.Plan != nil {
